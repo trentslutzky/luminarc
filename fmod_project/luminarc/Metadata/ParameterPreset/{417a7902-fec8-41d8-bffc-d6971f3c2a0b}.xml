@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{417a7902-fec8-41d8-bffc-d6971f3c2a0b}">
+		<property name="name">
+			<value>score_pitch</value>
+		</property>
+		<relationship name="folder">
+			<destination>{030e0fa8-1984-48a3-a578-6044bf1b3133}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{f45441b7-764e-4018-a4e7-b3a5adf8d1a2}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{f45441b7-764e-4018-a4e7-b3a5adf8d1a2}">
+		<property name="maximum">
+			<value>5</value>
+		</property>
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>

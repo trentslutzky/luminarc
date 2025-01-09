@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ColorScheme" load_steps=2 format=3 uid="uid://coc44d85vemo5"]
+
+[ext_resource type="Script" path="res://scripts/colorscheme.gd" id="1_dycpk"]
+
+[resource]
+script = ExtResource("1_dycpk")
+block_a = Color(0, 0.5, 1, 0.392157)
+block_a_grouped = Color(0, 0.501961, 1, 0.784314)
+block_b = Color(0, 1, 0, 0.392157)
+block_b_grouped = Color(0, 1, 0, 0.784314)
+warning = Color(0.44465, 5.35455e-07, 2.64719e-07, 1)
+background = Color(0, 0, 0, 1)
+background_gradient_other = Color(0.0674377, 0.0674377, 0.0674377, 1)
+foreground = Color(1, 1, 1, 1)

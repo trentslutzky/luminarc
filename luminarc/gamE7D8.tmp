@@ -1,0 +1,286 @@
+[gd_scene load_steps=23 format=3 uid="uid://b78h40r2lr4oi"]
+
+[ext_resource type="Script" path="res://scripts/scanline.gd" id="4_6dhd7"]
+[ext_resource type="Script" path="res://scripts/column_marker.gd" id="4_k1n5u"]
+[ext_resource type="Script" path="res://scripts/column.gd" id="5_3u7wo"]
+[ext_resource type="Script" path="res://scripts/column_generator.gd" id="5_uopxq"]
+[ext_resource type="Script" path="res://scripts/block.gd" id="7_8y1jv"]
+[ext_resource type="Script" path="res://scripts/column_detector.gd" id="8_6mi6s"]
+[ext_resource type="FontFile" uid="uid://kcfmus7g2l7" path="res://fonts/QuinqueFive_Font_1_1/QuinqueFive.otf" id="8_anu33"]
+[ext_resource type="Script" path="res://scripts/score_label.gd" id="9_kykhg"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="10_nujmb"]
+[ext_resource type="Script" path="res://scripts/next_block_indicator.gd" id="11_32x2e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12mdn"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0987279, 0.0987285, 0.0987283, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w4ala"]
+radius = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_upb7n"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="Curve" id="Curve_10xir"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(0.985222, -360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gxntt"]
+curve = SubResource("Curve_10xir")
+
+[sub_resource type="Gradient" id="Gradient_wkj4r"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iupnl"]
+gradient = SubResource("Gradient_wkj4r")
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_nrd2a"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h68vc"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+angular_velocity_curve = SubResource("CurveTexture_gxntt")
+directional_velocity_min = 1.0
+directional_velocity_max = 1.0
+directional_velocity_curve = SubResource("CurveXYZTexture_nrd2a")
+gravity = Vector3(0, 0, 0)
+scale_min = 10.0
+scale_max = 10.0
+color_ramp = SubResource("GradientTexture1D_iupnl")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odfad"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_imdiw"]
+radius = 16.0
+
+[sub_resource type="Theme" id="Theme_l110q"]
+default_font = ExtResource("8_anu33")
+
+[node name="game" type="Node2D"]
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://audio/fmod_banks/Desktop/Master.strings.bank", "res://audio/fmod_banks/Desktop/Master.bank", "res://audio/fmod_banks/Desktop/sfx.bank", "res://audio/fmod_banks/Desktop/MUSIC.bank"]
+
+[node name="BG" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(800, 600)
+offset_left = -426.0
+offset_top = -321.0
+offset_right = 418.0
+offset_bottom = 318.0
+color = Color(0, 0, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="FmodListener2D" type="FmodListener2D" parent="Camera2D"]
+
+[node name="Panel6" type="Panel" parent="."]
+offset_left = 13.0
+offset_top = -284.0
+offset_right = 88.41
+offset_bottom = -269.0
+rotation = 0.174533
+theme_override_styles/panel = SubResource("StyleBoxFlat_12mdn")
+script = ExtResource("11_32x2e")
+block_index = 1
+
+[node name="Panel7" type="Panel" parent="."]
+offset_left = -86.0
+offset_top = -271.0
+offset_right = -11.5
+offset_bottom = -256.0
+rotation = -0.174533
+theme_override_styles/panel = SubResource("StyleBoxFlat_12mdn")
+script = ExtResource("11_32x2e")
+
+[node name="circ" type="Node2D" parent="."]
+rotation = -0.174533
+script = ExtResource("4_k1n5u")
+
+[node name="scanline" type="Node2D" parent="circ"]
+rotation = 0.174533
+script = ExtResource("4_6dhd7")
+
+[node name="scan_area" type="Area2D" parent="circ/scanline"]
+position = Vector2(0, -250)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="circ/scanline/scan_area"]
+shape = SubResource("CircleShape2D_w4ala")
+
+[node name="ColorRect" type="ColorRect" parent="circ/scanline"]
+offset_left = -27.6
+offset_top = -87.8
+offset_right = 0.4
+offset_bottom = -83.8
+rotation = -0.174533
+
+[node name="ColorRect2" type="ColorRect" parent="circ/scanline"]
+offset_top = -92.65
+offset_right = 28.0
+offset_bottom = -88.65
+rotation = 0.174533
+
+[node name="columns" type="Node2D" parent="circ"]
+script = ExtResource("5_uopxq")
+
+[node name="column 1" type="Node2D" parent="circ/columns"]
+script = ExtResource("5_3u7wo")
+
+[node name="Panel" type="Panel" parent="circ/columns/column 1"]
+offset_left = -15.605
+offset_top = -125.0
+offset_right = 16.555
+offset_bottom = -95.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_upb7n")
+script = ExtResource("7_8y1jv")
+
+[node name="particles" type="GPUParticles2D" parent="circ/columns/column 1/Panel"]
+position = Vector2(16.6325, 15.5151)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_h68vc")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+
+[node name="Panel2" type="Panel" parent="circ/columns/column 1"]
+offset_left = -21.195
+offset_top = -156.0
+offset_right = 22.02
+offset_bottom = -126.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_odfad")
+script = ExtResource("7_8y1jv")
+
+[node name="particles" type="GPUParticles2D" parent="circ/columns/column 1/Panel2"]
+position = Vector2(20.5383, 15.7553)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_h68vc")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+
+[node name="Panel3" type="Panel" parent="circ/columns/column 1"]
+offset_left = -26.185
+offset_top = -187.0
+offset_right = 27.025
+offset_bottom = -157.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_odfad")
+script = ExtResource("7_8y1jv")
+
+[node name="particles" type="GPUParticles2D" parent="circ/columns/column 1/Panel3"]
+position = Vector2(25.9873, 15.358)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_h68vc")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+
+[node name="Panel4" type="Panel" parent="circ/columns/column 1"]
+offset_left = -31.665
+offset_top = -218.0
+offset_right = 32.73
+offset_bottom = -188.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_odfad")
+script = ExtResource("7_8y1jv")
+
+[node name="particles" type="GPUParticles2D" parent="circ/columns/column 1/Panel4"]
+position = Vector2(31.5791, 16.9304)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_h68vc")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+
+[node name="Panel5" type="Panel" parent="circ/columns/column 1"]
+offset_left = -37.305
+offset_top = -249.0
+offset_right = 37.59
+offset_bottom = -219.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_odfad")
+script = ExtResource("7_8y1jv")
+
+[node name="particles" type="GPUParticles2D" parent="circ/columns/column 1/Panel5"]
+position = Vector2(36.5197, 17.3442)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_h68vc")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+
+[node name="column_area" type="Area2D" parent="circ/columns/column 1"]
+position = Vector2(43.2384, -245.217)
+rotation = 0.148353
+script = ExtResource("8_6mi6s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="circ/columns/column 1/column_area"]
+position = Vector2(7.99726, 0.209416)
+shape = SubResource("CircleShape2D_imdiw")
+
+[node name="score_num_label" type="RichTextLabel" parent="."]
+offset_left = -86.575
+offset_top = -32.0
+offset_right = 97.425
+offset_bottom = 30.0
+pivot_offset = Vector2(86.575, 31.94)
+theme_override_colors/font_outline_color = Color(0.253238, 0.253238, 0.253238, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/normal_font = ExtResource("8_anu33")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]00"
+fit_content = true
+scroll_active = false
+script = ExtResource("9_kykhg")
+
+[node name="score_hading" type="RichTextLabel" parent="."]
+offset_left = -91.575
+offset_top = -42.0
+offset_right = 92.425
+offset_bottom = 20.0
+pivot_offset = Vector2(86.575, 31.94)
+theme_override_fonts/normal_font = ExtResource("8_anu33")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[center]sc0re"
+fit_content = true
+scroll_active = false
+
+[node name="main_menu" type="Node2D" parent="." node_paths=PackedStringArray("start_button")]
+visible = false
+script = ExtResource("10_nujmb")
+start_button = NodePath("ColorRect/Button")
+
+[node name="ColorRect" type="ColorRect" parent="main_menu"]
+offset_left = -225.0
+offset_top = -150.0
+offset_right = 225.0
+offset_bottom = 150.0
+pivot_offset = Vector2(225, 150)
+theme = SubResource("Theme_l110q")
+color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Button" parent="main_menu/ColorRect"]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 123.0
+offset_right = 306.0
+offset_bottom = 161.0
+text = "start"

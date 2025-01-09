@@ -1,0 +1,6 @@
+[gd_resource type="RichTextEffect" script_class="TextEffectCurve" load_steps=2 format=3 uid="uid://wamh2kpoiq26"]
+
+[ext_resource type="Script" path="res://scripts/curve_text.gd" id="1_a6t0d"]
+
+[resource]
+script = ExtResource("1_a6t0d")

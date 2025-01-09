@@ -1,0 +1,245 @@
+[gd_scene load_steps=20 format=3 uid="uid://buqjfr535bn16"]
+
+[ext_resource type="Script" path="res://scripts/column.gd" id="1_b86ad"]
+[ext_resource type="Script" path="res://scripts/block.gd" id="2_gw5kf"]
+[ext_resource type="Shader" path="res://art/arc.gdshader" id="3_hu6bb"]
+[ext_resource type="Texture2D" uid="uid://og68i640c6u5" path="res://art/1px.png" id="4_1jmna"]
+[ext_resource type="Script" path="res://scripts/column_detector.gd" id="5_polcg"]
+[ext_resource type="FontFile" uid="uid://kcfmus7g2l7" path="res://fonts/QuinqueFive_Font_1_1/QuinqueFive.otf" id="6_77a5n"]
+[ext_resource type="Script" path="res://scripts/color_rect_bg_color.gd" id="7_5xcg7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5oxgs"]
+shader = ExtResource("3_hu6bb")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.249
+shader_parameter/thickness = 0.06
+shader_parameter/start_angle = 0.0
+shader_parameter/arc_angle = 0.335
+shader_parameter/color1 = Vector4(0.1, 0.1, 0.1, 1)
+shader_parameter/color2 = Vector4(0.1, 0.1, 0.1, 0.6)
+shader_parameter/checker_size = 0.006
+
+[sub_resource type="Curve" id="Curve_10xir"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(0.985222, -360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gxntt"]
+curve = SubResource("Curve_10xir")
+
+[sub_resource type="Gradient" id="Gradient_5v400"]
+offsets = PackedFloat32Array(0, 0.751295, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b2f8i"]
+gradient = SubResource("Gradient_5v400")
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_nrd2a"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h68vc"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(20, 1, 1)
+angle_min = 20.0
+angle_max = 40.0
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+angular_velocity_curve = SubResource("CurveTexture_gxntt")
+directional_velocity_min = 1.0
+directional_velocity_max = 1.0
+directional_velocity_curve = SubResource("CurveXYZTexture_nrd2a")
+gravity = Vector3(0, 0, 0)
+scale_min = 10.0
+scale_max = 10.0
+color_ramp = SubResource("GradientTexture1D_b2f8i")
+turbulence_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ncd3"]
+shader = ExtResource("3_hu6bb")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.313
+shader_parameter/thickness = 0.06
+shader_parameter/start_angle = 0.0
+shader_parameter/arc_angle = 0.335
+shader_parameter/color1 = Vector4(0.1, 0.1, 0.1, 1)
+shader_parameter/color2 = Vector4(0.1, 0.1, 0.1, 0.6)
+shader_parameter/checker_size = 0.006
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_clkxa"]
+shader = ExtResource("3_hu6bb")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.372
+shader_parameter/thickness = 0.055
+shader_parameter/start_angle = 0.0
+shader_parameter/arc_angle = 0.335
+shader_parameter/color1 = Vector4(0.1, 0.1, 0.1, 1)
+shader_parameter/color2 = Vector4(0.1, 0.1, 0.1, 0.6)
+shader_parameter/checker_size = 0.006
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t2jrj"]
+shader = ExtResource("3_hu6bb")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.436
+shader_parameter/thickness = 0.06
+shader_parameter/start_angle = 0.0
+shader_parameter/arc_angle = 0.335
+shader_parameter/color1 = Vector4(0.1, 0.1, 0.1, 1)
+shader_parameter/color2 = Vector4(0.1, 0.1, 0.1, 0.6)
+shader_parameter/checker_size = 0.006
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pkpxd"]
+shader = ExtResource("3_hu6bb")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.5
+shader_parameter/thickness = 0.06
+shader_parameter/start_angle = 0.0
+shader_parameter/arc_angle = 0.335
+shader_parameter/color1 = Vector4(0.1, 0.1, 0.1, 1)
+shader_parameter/color2 = Vector4(0.1, 0.1, 0.1, 0.6)
+shader_parameter/checker_size = 0.006
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_imdiw"]
+radius = 16.0
+
+[node name="column 1" type="Node2D"]
+script = ExtResource("1_b86ad")
+
+[node name="Panel" type="Node2D" parent="."]
+script = ExtResource("2_gw5kf")
+
+[node name="arc" type="Sprite2D" parent="Panel"]
+material = SubResource("ShaderMaterial_5oxgs")
+rotation = -1.73835
+scale = Vector2(500, 500)
+texture = ExtResource("4_1jmna")
+
+[node name="particles" type="GPUParticles2D" parent="Panel"]
+z_index = 5
+position = Vector2(0, -110)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_h68vc")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="Panel2" type="Node2D" parent="."]
+script = ExtResource("2_gw5kf")
+
+[node name="arc" type="Sprite2D" parent="Panel2"]
+material = SubResource("ShaderMaterial_2ncd3")
+rotation = -1.73835
+scale = Vector2(500, 500)
+texture = ExtResource("4_1jmna")
+
+[node name="particles" type="GPUParticles2D" parent="Panel2"]
+position = Vector2(0, -142)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_h68vc")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="Panel3" type="Node2D" parent="."]
+script = ExtResource("2_gw5kf")
+
+[node name="arc" type="Sprite2D" parent="Panel3"]
+material = SubResource("ShaderMaterial_clkxa")
+rotation = -1.73835
+scale = Vector2(500, 500)
+texture = ExtResource("4_1jmna")
+
+[node name="particles" type="GPUParticles2D" parent="Panel3"]
+position = Vector2(0, -173)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_h68vc")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="Panel4" type="Node2D" parent="."]
+script = ExtResource("2_gw5kf")
+
+[node name="arc" type="Sprite2D" parent="Panel4"]
+material = SubResource("ShaderMaterial_t2jrj")
+rotation = -1.73835
+scale = Vector2(500, 500)
+texture = ExtResource("4_1jmna")
+
+[node name="particles" type="GPUParticles2D" parent="Panel4"]
+position = Vector2(0, -204)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_h68vc")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="Panel5" type="Node2D" parent="."]
+script = ExtResource("2_gw5kf")
+
+[node name="arc" type="Sprite2D" parent="Panel5"]
+material = SubResource("ShaderMaterial_pkpxd")
+rotation = -1.73835
+scale = Vector2(500, 500)
+texture = ExtResource("4_1jmna")
+
+[node name="particles" type="GPUParticles2D" parent="Panel5"]
+position = Vector2(0, -235)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_h68vc")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="column_area" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -250)
+rotation = 0.148353
+script = ExtResource("5_polcg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="column_area"]
+shape = SubResource("CircleShape2D_imdiw")
+
+[node name="column_label" type="RichTextLabel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -264.0
+offset_right = 21.0
+offset_bottom = -224.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("6_77a5n")
+theme_override_font_sizes/normal_font_size = 9
+bbcode_enabled = true
+text = "[center]00"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 99
+offset_left = -14.0
+offset_top = -93.0
+offset_right = -10.0
+offset_bottom = 64.0
+rotation = -3.31613
+color = Color(0, 0, 0, 1)
+script = ExtResource("7_5xcg7")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = 99
+offset_left = 16.0
+offset_top = -93.0
+offset_right = 18.0
+offset_bottom = 66.0
+rotation = 3.31613
+color = Color(0, 0, 0, 1)
+script = ExtResource("7_5xcg7")

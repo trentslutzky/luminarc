@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{13af80c1-15bf-4326-96c4-4ce5bb37e403}">
+		<property name="assetPath">
+			<value>clicks/click-44.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.029999999999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{f3b08f4c-91fc-476d-b4f6-1da4483c51b7}</destination>
+		</relationship>
+	</object>
+</objects>

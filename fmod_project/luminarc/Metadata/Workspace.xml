@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="Workspace" id="{8b000d0f-b783-4d30-9099-535bb01b506c}">
+		<property name="builtBanksOutputDirectory">
+			<value>../../luminarc/audio/fmod_banks</value>
+		</property>
+		<relationship name="masterEventFolder">
+			<destination>{d2027586-e5d8-457d-8e75-fb1c32eb983c}</destination>
+		</relationship>
+		<relationship name="masterTagFolder">
+			<destination>{c629e9ea-a004-42ee-9e71-fa3d8d35a017}</destination>
+		</relationship>
+		<relationship name="masterEffectPresetFolder">
+			<destination>{36025e73-3ac0-4749-8d0d-6b8f5824fb41}</destination>
+		</relationship>
+		<relationship name="masterParameterPresetFolder">
+			<destination>{030e0fa8-1984-48a3-a578-6044bf1b3133}</destination>
+		</relationship>
+		<relationship name="masterBankFolder">
+			<destination>{28c06ce1-1db7-4f58-8d6c-cbfe8d44f0f3}</destination>
+		</relationship>
+		<relationship name="masterSandboxFolder">
+			<destination>{c92a1df3-5e4c-4d9d-b5fc-cccb675976fc}</destination>
+		</relationship>
+		<relationship name="masterAssetFolder">
+			<destination>{f3b08f4c-91fc-476d-b4f6-1da4483c51b7}</destination>
+		</relationship>
+		<relationship name="mixer">
+			<destination>{0d06af73-9399-4204-a1ea-9100f77e06e3}</destination>
+		</relationship>
+		<relationship name="profilerSessionFolder">
+			<destination>{cdd86a12-06f2-4cfc-9cf9-404866a9a500}</destination>
+		</relationship>
+		<relationship name="platforms">
+			<destination>{a4dcf966-da4b-4761-be42-25261c3c09bb}</destination>
+		</relationship>
+	</object>
+</objects>

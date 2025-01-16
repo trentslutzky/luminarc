@@ -200,7 +200,7 @@ shader_parameter/radius = 0.715
 shader_parameter/thickness = 2.623
 shader_parameter/start_angle = 0.0
 shader_parameter/arc_angle = 7.0
-shader_parameter/color1 = Vector4(0.03, 0.03, 0.03, 1)
+shader_parameter/color1 = Vector4(0.08, 0.08, 0.08, 1)
 shader_parameter/color2 = Vector4(0.01, 0.01, 0.01, 1)
 shader_parameter/checker_size = 0.012
 
@@ -434,6 +434,21 @@ shader_parameter/color1 = Vector4(0, 0, 0, 1)
 shader_parameter/color2 = Vector4(0, 0, 0, 1)
 shader_parameter/checker_size = 0.006
 
+[sub_resource type="Animation" id="Animation_ne721"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_bgs1w"]
 resource_name = "flash"
 loop_mode = 1
@@ -448,21 +463,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_ne721"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bfwwr"]
@@ -789,10 +789,9 @@ scale = Vector2(600, 600)
 texture = ExtResource("6_mh47j")
 script = ExtResource("14_g3old")
 
-[node name="main_menu" type="Node2D" parent="." node_paths=PackedStringArray("title", "prompt")]
+[node name="main_menu" type="Node2D" parent="." node_paths=PackedStringArray("prompt")]
 z_index = 101
 script = ExtResource("13_sddpp")
-title = NodePath("")
 prompt = NodePath("prompt")
 
 [node name="prompt" type="RichTextLabel" parent="main_menu"]
@@ -833,7 +832,6 @@ scroll_active = false
 
 [node name="title_letter_container2" type="Node2D" parent="main_menu/title_circle/title_arc"]
 rotation = 0.349066
-scale = Vector2(1, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="main_menu/title_circle/title_arc/title_letter_container2"]
 offset_left = -48.0
@@ -847,7 +845,6 @@ scroll_active = false
 
 [node name="title_letter_container3" type="Node2D" parent="main_menu/title_circle/title_arc"]
 rotation = 0.698132
-scale = Vector2(1, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="main_menu/title_circle/title_arc/title_letter_container3"]
 offset_left = -48.0
@@ -874,7 +871,6 @@ scroll_active = false
 
 [node name="title_letter_container5" type="Node2D" parent="main_menu/title_circle/title_arc"]
 rotation = 1.39626
-scale = Vector2(1, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="main_menu/title_circle/title_arc/title_letter_container5"]
 offset_left = -48.0
@@ -888,7 +884,6 @@ scroll_active = false
 
 [node name="title_letter_container6" type="Node2D" parent="main_menu/title_circle/title_arc"]
 rotation = 1.74533
-scale = Vector2(1, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="main_menu/title_circle/title_arc/title_letter_container6"]
 offset_left = -48.0
@@ -929,7 +924,6 @@ scroll_active = false
 [node name="title_arc2" type="Node2D" parent="main_menu/title_circle"]
 modulate = Color(0, 1, 0, 0.784314)
 rotation = 1.91986
-scale = Vector2(1, 1)
 
 [node name="title_letter_container" type="Node2D" parent="main_menu/title_circle/title_arc2"]
 
@@ -945,7 +939,6 @@ scroll_active = false
 
 [node name="title_letter_container2" type="Node2D" parent="main_menu/title_circle/title_arc2"]
 rotation = 0.349066
-scale = Vector2(1, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="main_menu/title_circle/title_arc2/title_letter_container2"]
 offset_left = -48.0
@@ -959,7 +952,6 @@ scroll_active = false
 
 [node name="title_letter_container3" type="Node2D" parent="main_menu/title_circle/title_arc2"]
 rotation = 0.698132
-scale = Vector2(1, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="main_menu/title_circle/title_arc2/title_letter_container3"]
 offset_left = -48.0
@@ -986,7 +978,6 @@ scroll_active = false
 
 [node name="title_letter_container5" type="Node2D" parent="main_menu/title_circle/title_arc2"]
 rotation = 1.39626
-scale = Vector2(1, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="main_menu/title_circle/title_arc2/title_letter_container5"]
 offset_left = -48.0
@@ -1000,7 +991,6 @@ scroll_active = false
 
 [node name="title_letter_container6" type="Node2D" parent="main_menu/title_circle/title_arc2"]
 rotation = 1.74533
-scale = Vector2(1, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="main_menu/title_circle/title_arc2/title_letter_container6"]
 offset_left = -48.0
